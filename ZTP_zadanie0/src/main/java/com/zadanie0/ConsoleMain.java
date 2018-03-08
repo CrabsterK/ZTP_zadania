@@ -69,17 +69,31 @@ public class ConsoleMain {
                 System.out.println("DODAWANIE POZYCJI");
                 Invoice inv = new Invoice(myConn);
                 if(inv.tableEmpty()){//pusta
-                    System.out.println("Najpierw musisz dodać fakturę!");
+                    System.out.println("~Najpierw musisz dodać fakturę!~");
                 }
                 else{               //nie pusta
                     System.out.println("Do której faktury dodać pozycję?");
                     inv.showInvoices();
                     System.out.println("ID faktury:");
                     int idFaktury = sc.nextInt();
+                    if(inv.validID(idFaktury)){
+                        System.out.println("Nazwa produktu:");
+                        // Skip the newline
+                        sc.nextLine();
+                        String productName = sc.nextLine();
+                        System.out.println("Cena produktu:");
+                        int price = sc.nextInt();
+                        System.out.println("Ilość:");
+                        int quantity = sc.nextInt();
 
+                        Item item = new Item(myConn);
+                        item.tableInsert(productName, price, quantity, idFaktury);
+                        System.out.println("~pozycja dodana~");
+                    }
+                    else{
+                        System.out.println("~Błędne ID faktury~");
+                    }
                 }
-
-
             }
 
             if(command.equals("3")){
