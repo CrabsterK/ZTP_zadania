@@ -92,6 +92,28 @@ public class Invoice {
         }
     }
 
+    public boolean validID(int id){
+        ArrayList<Integer> pissibleID = new ArrayList<Integer>();
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select IdInvoice from Invoice ";// + "SALES, TOTAL " + "from " + dbName + ".COFFEES";
+        try {
+            stmt = myConn.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int i = rs.getInt("IdInvoice");
+                pissibleID.add(i);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(pissibleID.contains(id)){
+            return true;
+        }
+        return false;
+    }
+
 
 
 
