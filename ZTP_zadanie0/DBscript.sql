@@ -1,14 +1,6 @@
 CREATE DATABASE ztpZad0;
 USE ztpZad0;
 
-CREATE TABLE Item (
-	IdItem int NOT NULL AUTO_INCREMENT,
-	productName varchar(40),
-	price int,
-	quantity int,
-	PRIMARY KEY (IdItem)
-);
-
 CREATE TABLE Dealer (
 	IdDealer int NOT NULL AUTO_INCREMENT,
 	companyName varchar(40),
@@ -25,13 +17,24 @@ CREATE TABLE Client (
 	PRIMARY KEY (IdClient)
 );
 
+
+
 CREATE TABLE Invoice (
 	IdInvoice int NOT NULL AUTO_INCREMENT,
-	IdItem int,
 	IdDealer int,
 	IdClient int,
+    invoiceName varchar(40),
 	PRIMARY KEY (IdInvoice),
-	FOREIGN KEY (IdItem) REFERENCES Item(IdItem),
-	FOREIGN KEY (IdDealer) REFERENCES Dealer(IdDealer),
-	FOREIGN KEY (IdClient) REFERENCES Client(IdClient) 
+	FOREIGN KEY (IdDealer) REFERENCES Dealer(IdDealer), 
+	FOREIGN KEY (IdClient) REFERENCES Client(IdClient)
+);
+
+CREATE TABLE Item (
+	IdItem int NOT NULL AUTO_INCREMENT,
+	productName varchar(40),
+	price int,
+	quantity int,
+    IdInvoice int,
+	PRIMARY KEY (IdItem),
+    FOREIGN KEY (IdInvoice) REFERENCES Invoice(IdInvoice)
 );
