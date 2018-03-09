@@ -148,8 +148,25 @@ public class ConsoleMain {
             if(command.equals("6")){//Aktualizuj pozycję
 
             }
-            if(command.equals("7")){//Usuń fakturę
-
+            if(command.equals("7")){//Usuń fakturę                      //NA RAZIE USUWA TYLKO TE PUSTE
+                System.out.println("USUWANIE FAKTURY");
+                Invoice inv = new Invoice(myConn);
+                if(inv.tableEmpty()){//pusta
+                    System.out.println("~Brak faktur!~");
+                }
+                else{               //nie pusta
+                    System.out.println("Którą fakturę usunąć");
+                    inv.showInvoices();
+                    System.out.println("ID faktury:");
+                    int idFaktury = sc.nextInt();
+                    if(inv.validID(idFaktury)){
+                        inv.deleteEmptyInvoice(idFaktury);
+                        System.out.println("~faktura usunięta~");
+                    }
+                    else{
+                        System.out.println("~Błędne ID faktury~");
+                    }
+                }
             }
             if(command.equals("8")){//Usuń pozycję
 
