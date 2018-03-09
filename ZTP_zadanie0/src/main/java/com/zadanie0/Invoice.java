@@ -130,6 +130,57 @@ public class Invoice {
     }
 
 
+    public void printInvoice(int idInvoice){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select IdInvoice, IdDealer, IdClient, invoiceName from Invoice";
+        //String sql1 = "select id, city, NIP from Client ";
+        try {
+            stmt = myConn.createStatement();
+            rs = stmt.executeQuery(query);
+            int idDealer;
+            int idClient;
+            while (rs.next()) {
+                if(rs.getInt("idInvoice") == idInvoice) {
+                    idDealer = rs.getInt("IdDealer");
+                    idClient = rs.getInt("IdClient");
+                    String invoiceName = rs.getString("invoiceName");
+
+                    System.out.println("=============================================================================");
+                    System.out.println("=============================================================================");
+                    System.out.format("%32s%20s%20s", invoiceName, "", "SUPER FAKTURA SYSTEM\n");
+                    //System.out.println("\t\t\t" + invoiceName + "\t\t\t\t\t\t" + "SUPER FAKTURA SYSTEM" );
+                    System.out.println("=============================================================================");
+
+                    //Drukowanie firmy
+                    System.out.println("Wystawiający fakturę:");
+                    Dealer dl = new Dealer(myConn);
+                    dl.printDealer(idDealer);
+                    System.out.println();
+
+
+                    //Drukownie klienta
+                    System.out.println("Dane klienta:");
+                    Client cl = new Client(myConn);
+                    cl.printClient(idClient);
+                }
+            }
+            System.out.format("%5s%32s%15s%10s", "Lp.", "Nazwa produktu", "Cena [zł]", "Ilość");
+            System.out.println();
+            //drukuj wszystkie pozycje faktury
+            Item item = new Item(myConn);
+            item.printAllItems(idInvoice);
+
+
+            //zakończenie
+            System.out.println("=============================================================================");
+            System.out.println("=============================================================================");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 
