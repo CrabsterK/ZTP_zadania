@@ -178,11 +178,27 @@ public class Invoice {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
+
+
+
+    public void deleteEmptyInvoice(int idInvoice){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String id = String.valueOf(idInvoice);
+        String query = "DELETE FROM invoice WHERE IdInvoice = '" + id +"'";
+
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+          /*
+            rs = stmt.executeQuery(query);*/
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
