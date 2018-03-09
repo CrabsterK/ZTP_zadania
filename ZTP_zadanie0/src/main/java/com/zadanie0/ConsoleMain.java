@@ -28,7 +28,7 @@ public class ConsoleMain {
         menu.showMenu();
         String command = sc.next();
         while(!command.equals("0")){
-            if(command.equals("1")){
+            if(command.equals("1")){//Dodaj fakturę
                 System.out.println("DODAWANIE FAKTURY");
                 System.out.println("Nazwa firmy:");
 
@@ -65,7 +65,7 @@ public class ConsoleMain {
                 System.out.println("~faktura dodana~");
             }
 
-            if(command.equals("2")){
+            if(command.equals("2")){//Dodaj pozycję
                 System.out.println("DODAWANIE POZYCJI");
                 Invoice inv = new Invoice(myConn);
                 if(inv.tableEmpty()){//pusta
@@ -96,23 +96,62 @@ public class ConsoleMain {
                 }
             }
 
-            if(command.equals("3")){
-
+            if(command.equals("3")){//Wyświetl fakturę
+                System.out.println("WYSWIETLANIE FAKTURY");
+                Invoice inv = new Invoice(myConn);
+                if(inv.tableEmpty()){//pusta
+                    System.out.println("~Brak faktur!~");
+                }
+                else{               //nie pusta
+                    System.out.println("Którą fakturę wyświetlić?");
+                    inv.showInvoices();
+                    System.out.println("ID faktury:");
+                    int idFaktury = sc.nextInt();
+                    if(inv.validID(idFaktury)){
+                        inv.printInvoice(idFaktury);
+                        Item item = new Item(myConn);
+                        System.out.println("~faktura wyświetlona~");
+                    }
+                    else{
+                        System.out.println("~Błędne ID faktury~");
+                    }
+                }
+            }
+            if(command.equals("4")){//Wyświetl pozycję
+                System.out.println("WYSWIETLANIE POZYCJI");
+                Invoice inv = new Invoice(myConn);
+                Item item = new Item(myConn);
+                if(inv.tableEmpty()){//pusta
+                    System.out.println("~Brak faktur!~");
+                }
+                else{               //nie pusta
+                    System.out.println("O którą fakturę chodzi?");
+                    inv.showInvoices();
+                    System.out.println("ID faktury:");
+                    int idFaktury = sc.nextInt();
+                    if(inv.validID(idFaktury)) {
+                        System.out.println("O którą pozycję chodzi?");
+                        item.showItems(idFaktury);
+                        System.out.println("ID pozycji:");
+                        int idPozycji = sc.nextInt();
+                        item.printOneItem(idFaktury, idPozycji);
+                        System.out.println("~pozycja wyświetlona~");
+                    }
+                    else{
+                        System.out.println("~Błędne ID faktury~");
+                    }
+                }
+            }
+            if(command.equals("5")){//Aktualizuj fakturę
 
             }
-            if(command.equals("4")){
+            if(command.equals("6")){//Aktualizuj pozycję
 
             }
-            if(command.equals("5")){
+            if(command.equals("7")){//Usuń fakturę
 
             }
-            if(command.equals("6")){
-
-            }
-            if(command.equals("7")){
-
-            }
-            if(command.equals("8")){
+            if(command.equals("8")){//Usuń pozycję
 
             }
             command = sc.next();
