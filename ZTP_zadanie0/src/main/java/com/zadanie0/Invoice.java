@@ -164,4 +164,17 @@ public class Invoice {
             e.printStackTrace();
         }
     }
+
+    public void changeInvoiceName(int idInvoice, String newName){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String id = String.valueOf(idInvoice);
+        String query = "UPDATE invoice SET invoiceName = '" + newName + "' WHERE IdInvoice = '" + idInvoice +"'";
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
