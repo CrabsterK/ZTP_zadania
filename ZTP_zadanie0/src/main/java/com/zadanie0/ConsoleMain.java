@@ -166,7 +166,22 @@ public class ConsoleMain {
                 }
             }
             if(command.equals("6")){//Aktualizuj pozycję
-
+                System.out.println("AKTUALIZUJ POZYCJĘ");
+                Item item = new Item(myConn);
+                System.out.println("O którą pozycję chodzi?");
+                item.showAllItems();
+                System.out.println("ID pozycji:");
+                int idPozycji = sc.nextInt();
+                System.out.println("Nowa nazwa:");
+                // Skip the newline
+                sc.nextLine();
+                String name = sc.nextLine();
+                System.out.println("Nowa cena:");
+                int price = sc.nextInt();
+                System.out.println("Nowa ilość:");
+                int quantity = sc.nextInt();
+                item.updateItemData(idPozycji, name, price, quantity);
+                System.out.println("~pozycja zaktualizowana~");
             }
             if(command.equals("7")){//Usuń fakturę                      //NA RAZIE USUWA TYLKO TE PUSTE
                 System.out.println("USUWANIE FAKTURY");
