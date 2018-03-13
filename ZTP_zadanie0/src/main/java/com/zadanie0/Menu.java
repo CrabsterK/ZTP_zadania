@@ -13,5 +13,6 @@ public class Menu {
         System.out.println("[6] Aktualizuj pozycję");
         System.out.println("[7] Usuń fakturę");
         System.out.println("[8] Usuń pozycję");
+        System.out.println("[9] Pokaż menu");
     }
 }
