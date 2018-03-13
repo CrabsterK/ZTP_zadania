@@ -2,7 +2,6 @@ package com.zadanie0;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class ConsoleMain {
@@ -19,7 +18,6 @@ public class ConsoleMain {
         Connection myConn = null;
         try {
             myConn = DriverManager.getConnection(url, user, password);
-            //System.out.println("Initiation OK");
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -160,7 +158,7 @@ public class ConsoleMain {
                     System.out.println("ID faktury:");
                     int idFaktury = sc.nextInt();
                     if(inv.validID(idFaktury)){
-                        inv.deleteEmptyInvoice(idFaktury);
+                        inv.deleteInvoiceAndItems(idFaktury);
                         System.out.println("~faktura usunięta~");
                     }
                     else{
@@ -169,10 +167,16 @@ public class ConsoleMain {
                 }
             }
             if(command.equals("8")){//Usuń pozycję
-
+                System.out.println("USUWANIE POZYCJI");
+                Item item = new Item(myConn);
+                System.out.println("O którą pozycję chodzi?");
+                item.showAllItems();
+                System.out.println("ID pozycji:");
+                int idPozycji = sc.nextInt();
+                item.deleteOneItems(idPozycji);
+                System.out.println("~pozycja usunięta~");
             }
             command = sc.next();
         }//while(!command.equals("0")){
-
-}
+    }
 }

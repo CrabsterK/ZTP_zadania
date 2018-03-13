@@ -4,9 +4,6 @@ import java.sql.*;
 
 public class Dealer {
     Connection myConn;
-    private String companyName;
-    private String city;
-    private String NIP;
     PreparedStatement statement = null;
     String sql = null;
 
@@ -53,6 +50,4 @@ public class Dealer {
             e.printStackTrace();
         }
     }
-
-
 }

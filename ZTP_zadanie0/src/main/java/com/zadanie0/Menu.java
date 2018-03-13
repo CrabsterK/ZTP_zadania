@@ -14,9 +14,4 @@ public class Menu {
         System.out.println("[7] Usuń fakturę");
         System.out.println("[8] Usuń pozycję");
     }
-
-
-    public void showMenu1(){
-
-    }
 }

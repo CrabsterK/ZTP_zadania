@@ -5,43 +5,12 @@ import java.util.ArrayList;
 
 public class Invoice {
     Connection myConn;
-    private String invoiceName;
-    private Dealer dealer;
-    private Client client;
-    private double fullPrice;
-    ArrayList<Item> itemList;
     PreparedStatement statement = null;
     String sql = null;
 
-    /*public Invoice(Connection myConn, String companyName, String city, String NIP, String id, String cityClient, String NIPClient) {
-        this.myConn = myConn;
-       // this.dealer = createDealer(companyName, city, NIP);
-        //this.client = createClient(id, cityClient, NIPClient);
-        this.fullPrice = 0;
-        itemList = new ArrayList<Item>();
-    }*/
     public Invoice(Connection myConn){
         this.myConn = myConn;
     }
-
-
-    public void addItem(String productName, double price, int quantity){
-        Item item = new Item(productName, price, quantity);
-        itemList.add(item);
-    }
-
-    /*private Dealer createDealer(String companyName, String city, String NIP) {
-        return new Dealer(companyName, city, NIP);
-    }
-
-    private Client createClient(String id, String city, String NIP) {
-        return new Client(id, city, NIP);
-    }*/
-
-
-
-
-
 
     public void updateClientId() {
         statement = null;
@@ -53,8 +22,6 @@ public class Invoice {
             e.printStackTrace();
         }
     }
-
-
 
 
     public boolean tableEmpty(){
@@ -92,6 +59,7 @@ public class Invoice {
         }
     }
 
+
     public boolean validID(int id){
         ArrayList<Integer> pissibleID = new ArrayList<Integer>();
         Statement stmt = null;
@@ -107,14 +75,11 @@ public class Invoice {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         if(pissibleID.contains(id)){
             return true;
         }
         return false;
     }
-
-
 
 
     public void tableInsert(String invoiceName) {
@@ -134,7 +99,6 @@ public class Invoice {
         Statement stmt = null;
         ResultSet rs = null;
         String query = "select IdInvoice, IdDealer, IdClient, invoiceName from Invoice";
-        //String sql1 = "select id, city, NIP from Client ";
         try {
             stmt = myConn.createStatement();
             rs = stmt.executeQuery(query);
@@ -181,31 +145,23 @@ public class Invoice {
     }
 
 
+    public void deleteInvoiceAndItems(int idInvoice){
+        Item item = new Item(myConn);
+        item.deleteInvoiceItems(idInvoice);
+        deleteEmptyInvoice(idInvoice);
+    }
 
 
-
-    public void deleteEmptyInvoice(int idInvoice){
+    private void deleteEmptyInvoice(int idInvoice){
         Statement stmt = null;
         ResultSet rs = null;
         String id = String.valueOf(idInvoice);
         String query = "DELETE FROM invoice WHERE IdInvoice = '" + id +"'";
-
         try {
             stmt = myConn.createStatement();
             stmt.executeUpdate(query);
-          /*
-            rs = stmt.executeQuery(query);*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
-
 }

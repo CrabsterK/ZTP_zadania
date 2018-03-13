@@ -4,29 +4,12 @@ import java.sql.*;
 
 public class Item {
     Connection myConn;
-    private String productName;
-    private double price;
-    private int quantity;
     PreparedStatement statement = null;
     String sql = null;
 
     public Item(Connection myConn) {
         this.myConn = myConn;
     }
-
-    public Item(Connection myConn, String productName, double price, int quantity) {
-        this.myConn = myConn;
-        this.productName = productName;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-    public Item(String productName, double price, int quantity) {
-        this.productName = productName;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
 
 
     public void tableInsert(String productName, int price, int quantity, int IdInvoice) {
@@ -43,8 +26,6 @@ public class Item {
             e.printStackTrace();
         }
     }
-
-
 
 
     public void printAllItems(int IdInvoice){
@@ -66,8 +47,6 @@ public class Item {
                     lp++;
                 }
             }
-
-            //drukuj pozycje faktury
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,6 +74,24 @@ public class Item {
     }
 
 
+    public void showAllItems(){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select IdItem, productName, IdInvoice from Item ";// + "SALES, TOTAL " + "from " + dbName + ".COFFEES";
+        try {
+            stmt = myConn.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int IdItem = rs.getInt("IdItem");
+                String productName = rs.getString("productName");
+                System.out.println("ID" + "\t" + "Nazwa produktu");
+                System.out.println(IdItem + "\t" + productName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void printOneItem(int IdInvoice, int IdItem){
         Statement stmt = null;
@@ -119,16 +116,34 @@ public class Item {
                     lp++;
                 }
             }
-
-            //drukuj pozycje faktury
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
+    public void deleteInvoiceItems(int IdInvoice){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "DELETE FROM Item WHERE IdInvoice = '" + IdInvoice +"'";
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
+    public void deleteOneItems(int IdItem){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "DELETE FROM Item WHERE IdItem = '" + IdItem +"'";
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

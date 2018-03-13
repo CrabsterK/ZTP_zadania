@@ -4,9 +4,6 @@ import java.sql.*;
 
 public class Client {
     Connection myConn;
-    private String id;
-    private String city;
-    private String NIP;
     PreparedStatement statement = null;
     String sql = null;
 
@@ -14,11 +11,6 @@ public class Client {
         this.myConn = myConn;
     }
 
-    public Client(String id, String city, String NIP) {
-        this.id = id;
-        this.city = city;
-        this.NIP = NIP;
-    }
 
     public void tableInsert(String id, String city, String NIP) {
         statement = null;
@@ -33,11 +25,6 @@ public class Client {
             e1.printStackTrace();
         }
     }
-
-
-
-
-
 
 
     public void printClient(int IdClient){
@@ -62,13 +49,4 @@ public class Client {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
-
 }
