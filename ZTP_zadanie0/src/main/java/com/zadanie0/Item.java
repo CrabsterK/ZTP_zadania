@@ -146,4 +146,46 @@ public class Item {
             e.printStackTrace();
         }
     }
+
+    private void updateName(int IdItem, String name){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "UPDATE item SET productName = '" + name + "' WHERE IdItem = '" + IdItem +"'";
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updatePrice(int IdItem, int price){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "UPDATE item SET price = '" + price + "' WHERE IdItem = '" + IdItem +"'";
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateQuantity(int IdItem, int quantity){
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "UPDATE item SET quantity = '" + quantity + "' WHERE IdItem = '" + IdItem +"'";
+        try {
+            stmt = myConn.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateItemData(int IdItem, String name, int price, int quantity){
+        updateName(IdItem, name);
+        updatePrice(IdItem, price);
+        updateQuantity(IdItem, quantity);
+    }
 }
