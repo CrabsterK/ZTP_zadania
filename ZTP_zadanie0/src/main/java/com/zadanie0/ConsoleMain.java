@@ -10,8 +10,6 @@ public class ConsoleMain {
     private static String password = "root";
 
 
-
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Menu menu = new Menu();
@@ -183,7 +181,7 @@ public class ConsoleMain {
                 item.updateItemData(idPozycji, name, price, quantity);
                 System.out.println("~pozycja zaktualizowana~");
             }
-            if(command.equals("7")){//Usuń fakturę                      //NA RAZIE USUWA TYLKO TE PUSTE
+            if(command.equals("7")){//Usuń fakturę
                 System.out.println("USUWANIE FAKTURY");
                 Invoice inv = new Invoice(myConn);
                 if(inv.tableEmpty()){//pusta
