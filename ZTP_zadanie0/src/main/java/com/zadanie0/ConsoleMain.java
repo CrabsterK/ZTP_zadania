@@ -141,7 +141,29 @@ public class ConsoleMain {
                 }
             }
             if(command.equals("5")){//Aktualizuj fakturę
-
+                System.out.println("AKTUALIZUJ FAKTURĘ");
+                Invoice inv = new Invoice(myConn);
+                if(inv.tableEmpty()){//pusta
+                    System.out.println("~Brak faktur!~");
+                }
+                else{               //nie pusta
+                    System.out.println("Którą fakturę aktualizować?");
+                    inv.showInvoices();
+                    System.out.println("ID faktury:");
+                    int idFaktury = sc.nextInt();
+                    if(inv.validID(idFaktury)){
+                        System.out.println("Nowa nazwa faktury:");
+                        // Skip the newline
+                        sc.nextLine();
+                        String newName = sc.nextLine();
+                        inv.changeInvoiceName(idFaktury, newName);
+                        Item item = new Item(myConn);
+                        System.out.println("~faktura zaktualizowana~");
+                    }
+                    else{
+                        System.out.println("~Błędne ID faktury~");
+                    }
+                }
             }
             if(command.equals("6")){//Aktualizuj pozycję
 
@@ -175,6 +197,9 @@ public class ConsoleMain {
                 int idPozycji = sc.nextInt();
                 item.deleteOneItems(idPozycji);
                 System.out.println("~pozycja usunięta~");
+            }
+            if(command.equals("9")) {//Usuń pozycję
+                menu.showMenu();
             }
             command = sc.next();
         }//while(!command.equals("0")){
