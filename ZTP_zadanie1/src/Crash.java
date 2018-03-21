@@ -2,6 +2,9 @@ public class Crash <A, B> {
     private A ob1;
     private B ob2;
 
+    public Crash() {
+    }
+
     public Crash(A ob1, B ob2) {
         this.ob1 = ob1; this.ob2 = ob2;
     }

@@ -2,6 +2,13 @@ public class Car extends Vehicle {
     private int numberOfWheels = 4;
     private int weight = 1300;
 
+    public Car(){
+
+    }
+
+    public Car(int weight){
+        this.weight = weight;
+    }
     public int getNumberOfWheels(){
         return numberOfWheels;
     }

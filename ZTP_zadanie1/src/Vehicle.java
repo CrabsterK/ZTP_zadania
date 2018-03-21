@@ -1,14 +1,14 @@
-public class Vehicle {
-    private int weight = 50;
+public abstract class Vehicle {
+   // private int weight = 50;
     public int getNumberOfWheels(){
-        return 0;
+        return -1;
     }
 
     public double getWeight(){
-        return 100;
+        return -1;
     }
 
     public void connectionWeight(Vehicle vehicle){
-        System.out.println(weight + " + " + vehicle.weight + " = " + String.valueOf(weight + vehicle.weight));
+        System.out.println("Brak masy.");
     }
 }
