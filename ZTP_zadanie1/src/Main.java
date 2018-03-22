@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("\n================ POLIMORFIZM INKLUZYJNY ================");
+        System.out.println("\n================ POLIMORFIZM INKLUZYJNY ================");// dziedziczenie nadpissanie
         System.out.println("\tCar car = new Car(); \n\tcar.getNumberOfWheels()");
         Car car = new Car();
         System.out.println("Ilość kół: " + car.getNumberOfWheels());
@@ -108,23 +108,28 @@ public class Main {
         gar.addToGarage(carLast);
         gar.addToGarage(spcaLast);
 
+        System.out.println(gar.getCar());
+
         //2
         //gar.addListToGarage(listVehLast);
         gar.addListToGarage(listCarLast);
         //gar.addListToGarage(listSpecLast);
 
+        System.out.println(gar.getGarageList());
 
         //3
        // gar.addExtendsListToGarage(listVehLast);
         gar.addExtendsListToGarage(listCarLast);
         gar.addExtendsListToGarage(listSpecLast);
 
+        System.out.println(gar.getExtendsGarageList());
 
         //4
         gar.addSuperListToGarage(listVehLast);
         gar.addSuperListToGarage(listCarLast);
         //gar.addSuperListToGarage(listSpecLast);
 
+        System.out.println(gar.getSuperGarageList());
 
 
 

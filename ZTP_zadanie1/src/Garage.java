@@ -14,7 +14,7 @@ public class Garage <T> {
         list.add(e1);
     }
 
-    public T m() {
+    public T getCar() {
         return t;
     }
 
