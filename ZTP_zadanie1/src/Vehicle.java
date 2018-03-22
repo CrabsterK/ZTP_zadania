@@ -1,4 +1,4 @@
-public abstract class Vehicle {
+public class Vehicle {
    // private int weight = 50;
     public int getNumberOfWheels(){
         return -1;
