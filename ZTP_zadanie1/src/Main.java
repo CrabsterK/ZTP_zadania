@@ -86,5 +86,55 @@ public class Main {
 
 
 
+
+        System.out.println("\n=====TESTY WYWOLAN=====");
+        Car carLast = new Car();
+        Garage<Car> gar = new Garage<>(carLast);
+
+
+        Vehicle vehLast = new Vehicle();
+        SpecialCar spcaLast = new SpecialCar();
+        ArrayList<Vehicle> listVehLast= new ArrayList<Vehicle>();
+        listVehLast.add(vehLast);
+        ArrayList<Car> listCarLast= new ArrayList<Car>();
+        listCarLast.add(carLast);
+        ArrayList<SpecialCar> listSpecLast= new ArrayList<SpecialCar>();
+        listSpecLast.add(spcaLast);
+
+
+
+        //1
+        //gar.addToGarage(vehLast);//tego już nie można
+        gar.addToGarage(carLast);
+        gar.addToGarage(spcaLast);
+
+        //2
+        //gar.addListToGarage(listVehLast);
+        gar.addListToGarage(listCarLast);
+        //gar.addListToGarage(listSpecLast);
+
+
+        //3
+       // gar.addExtendsListToGarage(listVehLast);
+        gar.addExtendsListToGarage(listCarLast);
+        gar.addExtendsListToGarage(listSpecLast);
+
+
+        //4
+        gar.addSuperListToGarage(listVehLast);
+        gar.addSuperListToGarage(listCarLast);
+        //gar.addSuperListToGarage(listSpecLast);
+
+
+
+
+        //System.out.println("gar.getGarageList() :    " + gar.getGarageList());
+
+
+
+
+
+
+
     }
 }
