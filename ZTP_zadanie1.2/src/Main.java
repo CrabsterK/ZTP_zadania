@@ -16,7 +16,7 @@ public class Main {
 
             stringPair.setGenericOb1("Fst");
             stringPair.setGenericOb2("Snd");
-            System.out.println("Created generic object in Pair: " + stringPair.getGenericOb1().getClass().toString() + "\n");
+            System.out.println("Created generic object in Pair of string: " + stringPair.getGenericOb1().getClass().toString() + "\n");
 
             booleanPair.setGenericOb1(true);
             booleanPair.setGenericOb2(false);
