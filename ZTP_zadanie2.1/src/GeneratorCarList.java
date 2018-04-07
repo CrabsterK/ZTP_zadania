@@ -5,7 +5,7 @@ public class GeneratorCarList {
     public GeneratorCarList() {
     }
 
-    public ArrayDataHolder generateArrSobCar(int quantity){
+    public ArrayDataHolder<CarSuboptimal> generateArrSobCar(int quantity){
         CarSuboptimal[] list = new CarSuboptimal[quantity];
         CarSuboptimal soCar = new CarSuboptimal();
         for(int i = 0; i < quantity; i++){
@@ -14,7 +14,7 @@ public class GeneratorCarList {
         return new ArrayDataHolder(list);
     }
 
-    public ArrayDataHolder generateArrOptCar(int quantity){
+    public ArrayDataHolder<CarOptimal> generateArrOptCar(int quantity){
         CarOptimal[] list = new CarOptimal[quantity];
         CarOptimal optCar = new CarOptimal();
         for(int i = 0; i < quantity; i++){
@@ -23,8 +23,8 @@ public class GeneratorCarList {
         return new ArrayDataHolder(list);
     }
 
-    public ArrayListDataHolder generateListSobCar(int quantity){
-        ArrayList<Object> list = new ArrayList<Object>();
+    public ArrayListDataHolder<CarSuboptimal> generateListSobCar(int quantity){
+        ArrayList<CarSuboptimal> list = new ArrayList<CarSuboptimal>();
         CarSuboptimal soCar = new CarSuboptimal();
         for(int i = 0; i < quantity; i++){
             list.add(soCar.generateRandom());
@@ -32,8 +32,8 @@ public class GeneratorCarList {
         return new ArrayListDataHolder(list);
     }
 
-    public ArrayListDataHolder generateListOptCar(int quantity ){
-        ArrayList<Object> list = new ArrayList<Object>();
+    public ArrayListDataHolder<CarOptimal> generateListOptCar(int quantity ){
+        ArrayList<CarOptimal> list = new ArrayList<CarOptimal>();
         CarOptimal optCar = new CarOptimal();
         for(int i = 0; i < quantity; i++){
             list.add(optCar.generateRandom());
