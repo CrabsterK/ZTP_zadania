@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
-public class ArrayListDataHolder {
-    ArrayList<Object> list;
+public class ArrayListDataHolder <E>{
+    ArrayList<E> list;
 
-    public ArrayListDataHolder(ArrayList<Object> list) {
+    public ArrayListDataHolder(ArrayList<E> list) {
         this.list = list;
     }
 
-    public ArrayList<Object> getList() {
+    public ArrayList<E> getList() {
         return list;
     }
 }

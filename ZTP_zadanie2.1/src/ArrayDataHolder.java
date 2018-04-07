@@ -1,11 +1,11 @@
-public class ArrayDataHolder {
-    Object[] list;
+public class ArrayDataHolder <E> {
+    E[] list;
 
-    public ArrayDataHolder(Object[] list) {
+    public ArrayDataHolder(E[] list) {
         this.list = list;
     }
 
-    public Object[] getList() {
+    public E[] getList() {
         return list;
     }
 }
