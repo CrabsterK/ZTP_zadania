@@ -36,7 +36,7 @@ public class Main {
         ArrayList arrSortNT = new ArrayList();
         for (int i = 0; i < EXPERIMENT_COUNTER; i++) {
             startTimeGenerate = System.nanoTime();
-            CarSuboptimal[] list = carGenerator.generateArrSobCar(LIST_TO_USE).getList();
+            CarSubOpt[] list = carGenerator.generateArrSobCar(LIST_TO_USE).getList();
             estimatedTimeGenerate = System.nanoTime() - startTimeGenerate;
             startTimeSort = System.currentTimeMillis();
             bt.sortArray(list);
@@ -54,7 +54,7 @@ public class Main {
             ArrayList list = carGenerator.generateListOptCar(LIST_TO_USE).getList();
             estimatedTimeGenerate = System.nanoTime() - startTimeGenerate;
             startTimeSort = System.currentTimeMillis();
-            bt.sortList(list);
+            bt.sortList2(list);
             estimatedTimeSort = System.currentTimeMillis() - startTimeSort;
             arrTN.add((double) estimatedTimeGenerate);
             arrSortTN.add((double) estimatedTimeSort);
@@ -69,7 +69,7 @@ public class Main {
             ArrayList list = carGenerator.generateListSobCar(LIST_TO_USE).getList();
             estimatedTimeGenerate = System.nanoTime() - startTimeGenerate;
             startTimeSort = System.currentTimeMillis();
-            bt.sortList2(list);
+            bt.sortList(list);
             estimatedTimeSort = System.currentTimeMillis() - startTimeSort;
             arrNN.add((double) estimatedTimeGenerate);
             arrSortNN.add((double) estimatedTimeSort);
