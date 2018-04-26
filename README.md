@@ -30,3 +30,12 @@ The task was to test optimization techniques from C# in Java:
 Task is implemented witch use of two designs patterns:
   - Prototype
   - Decorator
+  
+  
+## ZTP_zadanie3.1 - Java8 idioms
+Task was to use java8 stream() with:
+  - filter()
+  - map()
+  - max/min
+  - collect()
+
