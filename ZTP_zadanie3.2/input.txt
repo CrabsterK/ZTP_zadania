@@ -1,0 +1,5 @@
+add table Person
+addTo Person column Age int
+addPrim IdPerson to Person
+deleteFrom Person column age
+delete table Person

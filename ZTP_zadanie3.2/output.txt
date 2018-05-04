@@ -1,0 +1,6 @@
+CREATE TABLE 'Person';
+ALTER TABLE 'Person' ADD Age int;
+ALTER TABLE 'Person' ADD PRIMARY KEY (IdPerson);
+ALTER TABLE 'Person' DROP COLUMN age;
+DROP TABLE 'Person';
+
