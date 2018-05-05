@@ -1,8 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,15 +10,32 @@ public class Main {
         String fullText = readFile(INPUT_PATH);
         Scanner scanner = new Scanner(fullText);
         String fullScript = "";
+        FileOutputStream errOut = null;
 
         while (scanner.hasNextLine()) {
             String[] words = scanner.nextLine().split("\\s+");
             for (int i = 0; i < words.length; i++) {
                 words[i] = words[i].replaceAll("[^\\w]", "");
             }
-            String line = transformLine(words);
-            System.out.println(line);
-            fullScript += line + "\n";
+            try {
+                String line = transformLine(words);
+                System.out.println(line);
+                fullScript += line + "\n";
+            } catch(Exception e){
+                try {
+                    if(errOut == null) {
+                        errOut = new FileOutputStream("log.err");   // Zapis do dziennika
+                    }
+                    System.setErr(new PrintStream(errOut));
+                    String errLine = "";
+                    for (int i = 0; i < words.length; i++) {
+                        errLine += words[i] + " ";
+                    }
+                    System.err.println("Exception in row: '" + errLine + "' : " + e);
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+            }
         }
         scanner.close();
         saveToFile(OUTPUT_PATH, fullScript);
@@ -30,7 +45,7 @@ public class Main {
 
 
     public static String readFile(String path){
-        String allText = "";
+        String wholeText = "";
         try(BufferedReader br = new BufferedReader(new FileReader(path))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -39,41 +54,67 @@ public class Main {
                 sb.append(System.lineSeparator());
                 line = br.readLine();
             }
-            allText = sb.toString();
+            wholeText = sb.toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return allText;
+        return wholeText;
     }
 
     public static String transformLine(String[] words){
+        List add = new ArrayList();// Obsługa wyjątków przez użycie wartości domyślnych - nie do końca.
+        add.add("add");
+        add.add("ad");
+        add.add("addd");
+        List del = new ArrayList();
+        del.add("del");
+        del.add("delet");
+        del.add("delete");
+        List addCol = new ArrayList();
+        addCol.add("addto");
+        addCol.add("addTo");
+        addCol.add("addToo");
+        addCol.add("addtoo");
+        List delCol = new ArrayList();
+        delCol.add("deleteFrom");
+        delCol.add("deletefrom");
+        List addPrim = new ArrayList();
+        addPrim.add("addPrim");
+        addPrim.add("addPrimary");
+        addPrim.add("addprim");
+        addPrim.add("addprimary");
+
         String value = "";
-        if (words[0].equalsIgnoreCase("add")){
+        if (add.contains(words[0])){
             value += "CREATE TABLE " + "'" + words[2] + "'" + ";";
         }
-        if (words[0].equalsIgnoreCase("delete")){
+        else if (del.contains(words[0])){
             value += "DROP TABLE " + "'" + words[2] + "'" + ";";
         }
-        if (words[0].equalsIgnoreCase("addTo")){
+        else if (addCol.contains(words[0])){
             value += "ALTER TABLE " + "'" + words[1] + "'" + " ADD " + words[3] + " " + words[4] + ";";
         }
-        if (words[0].equalsIgnoreCase("deleteFrom")){
+        else if (delCol.contains(words[0])){
             value += "ALTER TABLE " + "'" + words[1] + "'" + " DROP COLUMN " + words[3] + ";";
         }
-        if (words[0].equalsIgnoreCase("addPrim")){
+        else if (addPrim.contains(words[0])){
             value += "ALTER TABLE " + "'" + words[3] + "'" + " ADD PRIMARY KEY " + "(" + words[1] + ")" + ";";
+        }
+        else{
+            throw new IllegalArgumentException("Wrong input line");
         }
         return value;
     }
 
     public static void saveToFile(String path, String line){
+
         try {
-            PrintStream out = new PrintStream("output.txt");
+            PrintStream out = new PrintStream(path);
             out.println(line);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            saveToFile("output2.txt", line); // Wywołanie operacji alternatywnej
         }
     }
 }
