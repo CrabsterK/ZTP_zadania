@@ -1,5 +1,8 @@
+add 
 add table Person
 addTo Person column Age int
 addPrim IdPerson to Person
+delete id
 deleteFrom Person column age
 delete table Person
+Co to za program w ogóle?

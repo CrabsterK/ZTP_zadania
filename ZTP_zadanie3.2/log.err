@@ -1,0 +1,3 @@
+Exception in row: 'add ' : java.lang.ArrayIndexOutOfBoundsException: 2
+Exception in row: 'delete id ' : java.lang.ArrayIndexOutOfBoundsException: 2
+Exception in row: 'Co to za program w ogle ' : java.lang.IllegalArgumentException: Wrong input line
