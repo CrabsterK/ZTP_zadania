@@ -1,0 +1,7 @@
+<CREATE TABLE>::= add | ad | addd
+<DROP TABLE>::= del | delet | delete
+<ALTER TABLE _ ADD>::= addTo | addto | addToo | addtoo
+<ALTER TABLE _ DROP>::= deleteFrom | deletefrom 
+<ALTER TABLE _ ADD PRIMARY KEY>::= addPrim | addPrimary | addprim | addprimary
+<Nazwa>::= <"ciąg liter">
+
