@@ -4,4 +4,5 @@
 <ALTER TABLE _ DROP>::= deleteFrom | deletefrom 
 <ALTER TABLE _ ADD PRIMARY KEY>::= addPrim | addPrimary | addprim | addprimary
 <Nazwa>::= <"ciąg liter">
+<Typ>::= <"ciąg liter">
 
