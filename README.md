@@ -38,4 +38,23 @@ Task was to use java8 stream() with:
   - map()
   - max/min
   - collect()
+  
+  
+  ## ZTP_zadanie3.2 - SQL migration
+Simple transcription form short forms to SQL taska, as described in BNF.
+There were used Exception Handling as saving logs, alternative functions, lists of choice.
+
+
+  ## ZTP_zadanie4.1 - Visitor
+Using Visitor pattern on AST tree to show data like XLM file.
+
+
+  ## ZTP_zadanie5.2 - Metrics
+Analysing metrics to find code smells, improve code and check metrics changes.
+
+
+  ## ZTP_zadanie6.1 - Thread
+Garage traffic implementation using threads for vehicles.
+
+
 
